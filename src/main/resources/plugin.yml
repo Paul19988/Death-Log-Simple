@@ -1,0 +1,7 @@
+name: ${project.name}
+version: ${project.version}
+main: ${project.mainClass}
+author: ${project.author}
+commands:
+   dls:
+      description: Death Log Simple Command
