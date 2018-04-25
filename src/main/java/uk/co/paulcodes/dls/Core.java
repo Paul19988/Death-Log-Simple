@@ -64,6 +64,7 @@ public class Core extends JavaPlugin {
     @Override
     public void onDisable() {
         getConfig().set("lastdeathno", lastDeathNo);
+        saveConfig();
     }
 
     public static Core getInstance() {
