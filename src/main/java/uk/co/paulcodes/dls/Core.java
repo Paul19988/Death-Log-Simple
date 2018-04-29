@@ -103,5 +103,7 @@ public class Core extends JavaPlugin {
         if(deathsFile.exists()) {
             deathsFC = YamlConfiguration.loadConfiguration(deathsFile);
         }
+        getInstance().getConfig().set("lastdeathno", 0);
+        getInstance().saveConfig();
     }
 }
