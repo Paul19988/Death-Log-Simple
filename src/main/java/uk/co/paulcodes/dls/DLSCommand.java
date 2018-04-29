@@ -15,8 +15,14 @@ public class DLSCommand implements CommandExecutor {
             if(sender.hasPermission("dls.admin")) {
                 if (args[0].equalsIgnoreCase("start")) {
                     Core.logg = true;
+                    sender.sendMessage(Core.prefix + "You have started logging player deaths.");
                 } else if (args[0].equalsIgnoreCase("end")) {
                     Core.logg = false;
+                    sender.sendMessage(Core.prefix + "You have stopped logging player deaths.");
+                } else if (args[0].equalsIgnoreCase("reset")) {
+                    Core.logg = false;
+                    Core.resetLog(sender);
+                    sender.sendMessage(Core.prefix + "You have reset the log for player deaths.");
                 }
             }else{
                 sender.sendMessage(Core.prefix + Core.nopermission);

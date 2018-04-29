@@ -1,5 +1,6 @@
 package uk.co.paulcodes.dls;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -87,5 +88,20 @@ public class Core extends JavaPlugin {
         }
 
         lastDeathNo++;
+    }
+
+    public static void resetLog(CommandSender sender) {
+        deathsFC = null;
+        deathsFile.delete();
+        sender.sendMessage(Core.prefix + "Successfully deleted Deaths File");
+        try {
+            deathsFile.createNewFile();
+            sender.sendMessage(Core.prefix + "Successfully created Deaths File");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(deathsFile.exists()) {
+            deathsFC = YamlConfiguration.loadConfiguration(deathsFile);
+        }
     }
 }
