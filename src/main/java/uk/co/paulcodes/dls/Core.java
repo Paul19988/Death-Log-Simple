@@ -1,5 +1,6 @@
 package uk.co.paulcodes.dls;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -30,8 +31,8 @@ public class Core extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DeathListener(), this);
         this.getCommand("dls").setExecutor(new DLSCommand());
         if(getConfig().getString("prefix") != null) {
-            prefix = getConfig().getString("prefix");
-            nopermission = getConfig().getString("nopermission");
+            prefix = ChatColor.translateAlternateColorCodes('&', getConfig().getString("prefix"));
+            nopermission = ChatColor.translateAlternateColorCodes('&', getConfig().getString("nopermission"));
             lastDeathNo = getConfig().getInt("lastdeathno");
         }else{
             getConfig().set("prefix", "&aDeathLogS &8> &e");
@@ -105,5 +106,7 @@ public class Core extends JavaPlugin {
         }
         getInstance().getConfig().set("lastdeathno", 0);
         getInstance().saveConfig();
+        getInstance().reloadConfig();
+        lastDeathNo = getInstance().getConfig().getInt("lastdeathno");
     }
 }
